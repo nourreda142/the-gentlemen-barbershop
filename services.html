@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services & Grooming Menu — THE GENTLEMEN Barbershop</title>
+  <meta name="description" content="Explore our complete menu of tailored haircuts, skin fades, beard sculpting, and traditional hot towel straight-razor shaves. Transparent pricing in EGP.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="demo-disclaimer-strip text-center">
+    <div class="container d-flex justify-content-between align-items-center">
+      <span class="d-none d-md-inline"><i class="bi bi-info-circle text-gold me-1"></i> Interactive Frontend Portfolio Project &bull; Demo Mode</span>
+      <span class="mx-auto mx-md-0"><i class="bi bi-clock text-gold me-1"></i> Mon–Thu 10AM–10PM &bull; Fri 1PM–11PM &bull; Sat–Sun 10AM–11PM</span>
+      <a href="my-bookings.html" class="text-gold text-decoration-none small d-none d-md-inline"><i class="bi bi-calendar-check me-1"></i> My Bookings</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg gentlemen-navbar sticky-top">
+    <div class="container">
+      <a class="brand-logo-link" href="index.html">
+        <span class="brand-logo-title">THE GENTLEMEN</span>
+        <span class="brand-logo-subtitle">EST. 2021 &bull; FINE GROOMING STUDIO</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarServicesContent" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-2 text-gold"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarServicesContent">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="barbers.html">Our Barbers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="my-bookings.html">My Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+            <a href="booking.html" class="btn btn-bronze px-4 py-2">
+              <i class="bi bi-scissors me-1"></i> Book Appointment
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Editorial Page Header -->
+  <header class="py-5 bg-charcoal-deep border-bottom border-dark-subtle position-relative overflow-hidden">
+    <div class="container py-4 text-center">
+      <span class="section-eyebrow">The Grooming Menu</span>
+      <h1 class="display-4 font-playfair text-ivory mb-3">Artisanal Services & Rituals</h1>
+      <div class="gold-divider mx-auto mb-3"></div>
+      <p class="section-subtitle mx-auto">
+        Each treatment is executed with unhurried precision, Japanese shear blades, steamed botanical towels, and fine European tonics.
+      </p>
+    </div>
+  </header>
+
+  <!-- Services Filter and Grid -->
+  <section class="section-padding bg-charcoal">
+    <div class="container">
+      
+      <!-- Category Filter Pills -->
+      <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+        <button class="service-filter-btn active" data-category="all">All Services (6)</button>
+        <button class="service-filter-btn" data-category="hair">Haircuts & Styling</button>
+        <button class="service-filter-btn" data-category="beard">Beard Craft</button>
+        <button class="service-filter-btn" data-category="shave">Traditional Shave</button>
+        <button class="service-filter-btn" data-category="packages">Luxury Packages</button>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="row g-4" id="services-page-grid">
+        <!-- Rendered via JavaScript from GENTLEMEN_DATA -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Guarantees / Rituals (Warm Ivory Editorial Section) -->
+  <section class="section-padding section-ivory">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5">
+          <span class="section-eyebrow text-gold">The Experience</span>
+          <h2 class="section-title font-playfair">What Every Chair Session Includes</h2>
+          <div class="gold-divider"></div>
+          <p class="text-muted">
+            We reject the rapid conveyor-belt approach of ordinary barbershops. At THE GENTLEMEN, your appointment is an uninterrupted block of craft and hospitality.
+          </p>
+          <a href="booking.html" class="btn btn-bronze mt-2">Book Your Visit</a>
+        </div>
+        <div class="col-lg-7">
+          <div class="row g-4">
+            <div class="col-sm-6">
+              <div class="p-4 bg-white rounded shadow-sm border border-light h-100">
+                <i class="bi bi-chat-heart text-gold fs-2 mb-2 d-block"></i>
+                <h5 class="font-playfair fs-6 mb-2 text-dark">Pre-Cut Architectural Consultation</h5>
+                <p class="small text-muted mb-0">Analysis of hair growth patterns, cowlicks, silhouette balance, and personal lifestyle maintenance.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="p-4 bg-white rounded shadow-sm border border-light h-100">
+                <i class="bi bi-moisture text-gold fs-2 mb-2 d-block"></i>
+                <h5 class="font-playfair fs-6 mb-2 text-dark">Eucalyptus Hot Towel Prep</h5>
+                <p class="small text-muted mb-0">Infused botanical steam to relax facial tension, open pores, and soften hair fibers before shearing.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="p-4 bg-white rounded shadow-sm border border-light h-100">
+                <i class="bi bi-bandaid text-gold fs-2 mb-2 d-block"></i>
+                <h5 class="font-playfair fs-6 mb-2 text-dark">Straight Razor Perimeter Lining</h5>
+                <p class="small text-muted mb-0">Ultra-sharp feather blade perimeter cleanup around ears, neck, and sideburns with warm badger lather.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="p-4 bg-white rounded shadow-sm border border-light h-100">
+                <i class="bi bi-cup-hot text-gold fs-2 mb-2 d-block"></i>
+                <h5 class="font-playfair fs-6 mb-2 text-dark">Complimentary Refreshments</h5>
+                <p class="small text-muted mb-0">Poured double espressos, sparkling mineral water, or fine single malt scotch during your chair time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service FAQ Section -->
+  <section class="section-padding bg-charcoal-deep border-top border-dark-subtle">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-eyebrow">Etiquette & Queries</span>
+        <h2 class="section-title font-playfair">Frequently Asked Questions</h2>
+        <div class="gold-divider mx-auto"></div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="accordion gentlemen-accordion" id="servicesAccordion">
+            <div class="accordion-item bg-espresso border border-bronze-subtle mb-3 rounded overflow-hidden">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button bg-espresso text-ivory collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  Should I wash my hair before my appointment?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#servicesAccordion">
+                <div class="accordion-body text-muted-ivory small">
+                  It is not required. All our haircuts and packages include a preliminary rinse and an invigorating post-cut botanical scalp massage to leave you perfectly groomed and ready for your day or evening.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item bg-espresso border border-bronze-subtle mb-3 rounded overflow-hidden">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button bg-espresso text-ivory collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  What is the difference between a Skin Fade and Classic Cut?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#servicesAccordion">
+                <div class="accordion-body text-muted-ivory small">
+                  A Classic Haircut utilizes shear-over-comb and guard blending with natural taper edges, keeping modest length at the base. A Skin Fade takes the bottom perimeter down to smooth skin with a foil shaver, creating a seamless gradient transition requiring 45 minutes of detailed micro-blending.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item bg-espresso border border-bronze-subtle mb-3 rounded overflow-hidden">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button bg-espresso text-ivory collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Can I reschedule or cancel my booking?
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#servicesAccordion">
+                <div class="accordion-body text-muted-ivory small">
+                  Yes, easily! You can visit the <a href="my-bookings.html" class="text-gold">My Bookings</a> page at any time to reschedule to a new date/time or cancel your appointment with one click.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-5 text-center bg-espresso border-top border-bronze-subtle">
+    <div class="container py-3">
+      <h3 class="font-playfair fs-2 text-ivory mb-2">Ready for a Tailored Transformation?</h3>
+      <p class="text-muted-ivory mb-4">Book your preferred service in less than two minutes.</p>
+      <a href="booking.html" class="btn btn-bronze px-5 py-3">
+        Book Your Service Now <i class="bi bi-arrow-right ms-2"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="gentlemen-footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="brand-logo-link mb-3">
+            <span class="brand-logo-title">THE GENTLEMEN</span>
+            <span class="brand-logo-subtitle">FINE GROOMING STUDIO</span>
+          </div>
+          <p class="small text-muted-ivory mb-4">
+            A bespoke men's barbershop committed to reviving the noble heritage of classic barbering with modern aesthetic precision.
+          </p>
+          <div class="d-flex">
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h5 class="font-playfair fs-6 text-ivory mb-3 text-uppercase letter-spacing-1">Navigation</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="footer-nav-link">Home</a></li>
+            <li><a href="services.html" class="footer-nav-link">Services Menu</a></li>
+            <li><a href="barbers.html" class="footer-nav-link">Resident Barbers</a></li>
+            <li><a href="booking.html" class="footer-nav-link">Book Appointment</a></li>
+            <li><a href="my-bookings.html" class="footer-nav-link">My Bookings</a></li>
+            <li><a href="contact.html" class="footer-nav-link">Contact Studio</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <h5 class="font-playfair fs-6 text-ivory mb-3 text-uppercase letter-spacing-1">Studio Address</h5>
+          <p class="small text-muted-ivory mb-2">
+            14 El-Gezira Street, Zamalek<br>Cairo, Egypt
+          </p>
+          <p class="small text-muted-ivory mb-0">
+            Tel: +20 2 2736 8890<br>
+            Mobile: +20 100 889 4433
+          </p>
+        </div>
+
+        <div class="col-lg-3">
+          <h5 class="font-playfair fs-6 text-ivory mb-3 text-uppercase letter-spacing-1">Demo Notice</h5>
+          <p class="small text-muted-ivory">
+            Demonstration portfolio application. Bookings are saved in your local browser storage.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 pt-4 border-top border-dark-subtle d-flex flex-wrap justify-content-between align-items-center small text-muted-ivory">
+        <div>&copy; <span id="current-year">2026</span> THE GENTLEMEN Barbershop. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Modular Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Page Script: Render Services with Filter -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('services-page-grid');
+      const filterBtns = document.querySelectorAll('.service-filter-btn');
+
+      function render(filter = 'all') {
+        const filtered = GENTLEMEN_DATA.services.filter(s => filter === 'all' || s.category === filter);
+        
+        container.innerHTML = filtered.map(service => `
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="service-preview-card h-100 d-flex flex-column justify-content-between">
+              <div>
+                <div class="service-card-img-wrapper position-relative">
+                  <img src="${service.image}" alt="${service.name}" class="service-card-img" loading="lazy">
+                  <span class="service-card-tag">${service.duration} mins</span>
+                  ${service.popular ? '<span class="service-popular-badge"><i class="bi bi-star-fill me-1"></i> Popular</span>' : ''}
+                </div>
+                <div class="p-4">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h3 class="font-playfair fs-4 text-ivory mb-0">${service.name}</h3>
+                    <div class="service-card-price">${service.price} <small class="currency">EGP</small></div>
+                  </div>
+                  <p class="text-muted-ivory small mb-3">${service.fullDesc}</p>
+                  
+                  <div class="service-features-list mb-3">
+                    <span class="small text-bronze fw-semibold d-block mb-2 text-uppercase letter-spacing-1">Includes:</span>
+                    <ul class="list-unstyled mb-0">
+                      ${service.features.map(f => `
+                        <li class="small text-muted-ivory mb-1 d-flex align-items-center">
+                          <i class="bi bi-check2 text-gold me-2"></i> ${f}
+                        </li>
+                      `).join('')}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 pt-0">
+                <a href="booking.html?service=${service.id}" class="btn btn-bronze w-100 py-2">
+                  <i class="bi bi-calendar-plus me-1"></i> Book This Service
+                </a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          render(btn.getAttribute('data-category'));
+        });
+      });
+
+      render('all');
+    });
+  </script>
+</body>
+</html>

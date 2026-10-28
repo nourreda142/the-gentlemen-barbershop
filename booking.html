@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book An Appointment — THE GENTLEMEN Barbershop</title>
+  <meta name="description" content="Reserve your chair with Marcus Vance, Julian Thorne, or David Sterling at THE GENTLEMEN. Instant interactive slot availability and confirmation.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body class="bg-charcoal">
+
+  <!-- Top Strip -->
+  <div class="demo-disclaimer-strip text-center">
+    <div class="container d-flex justify-content-between align-items-center">
+      <span class="d-none d-md-inline"><i class="bi bi-info-circle text-gold me-1"></i> Interactive Frontend Booking Engine &bull; Demo Mode</span>
+      <span class="mx-auto mx-md-0"><i class="bi bi-shield-check text-gold me-1"></i> Zero Cancellation Fees up to 2 Hours Before</span>
+      <a href="my-bookings.html" class="text-gold text-decoration-none small d-none d-md-inline"><i class="bi bi-calendar-check me-1"></i> My Bookings</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg gentlemen-navbar sticky-top">
+    <div class="container">
+      <a class="brand-logo-link" href="index.html">
+        <span class="brand-logo-title">THE GENTLEMEN</span>
+        <span class="brand-logo-subtitle">EST. 2021 &bull; FINE GROOMING STUDIO</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBookingContent" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-2 text-gold"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarBookingContent">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="barbers.html">Our Barbers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="my-bookings.html">My Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+            <a href="booking.html" class="btn btn-bronze px-4 py-2 active">
+              <i class="bi bi-scissors me-1"></i> Book Appointment
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Reschedule Alert Banner (Shown dynamically when ?reschedule=ID) -->
+  <div id="reschedule-alert-banner" class="bg-espresso border-bottom border-bronze py-3 d-none">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <div class="d-flex align-items-center text-ivory">
+        <i class="bi bi-arrow-repeat text-gold fs-4 me-3"></i>
+        <div>
+          <span class="fw-bold text-gold">Rescheduling Existing Appointment: </span>
+          <span id="reschedule-ref-id" class="badge bg-charcoal text-gold font-monospace px-2 py-1">TG-000000</span>
+          <span class="d-block small text-muted-ivory">Select your new preferred date and time slot below.</span>
+        </div>
+      </div>
+      <a href="booking.html" class="btn btn-outline-bronze btn-sm">Cancel Reschedule</a>
+    </div>
+  </div>
+
+  <!-- Page Container -->
+  <div class="container py-5">
+    
+    <!-- Wizard Stepper Breadcrumb Header -->
+    <div class="booking-stepper-container" id="booking-stepper">
+      <button type="button" class="step-progress-item active" data-step="1">
+        <div class="step-indicator-circle">1</div>
+        <div class="step-label">Service</div>
+      </button>
+
+      <button type="button" class="step-progress-item" data-step="2">
+        <div class="step-indicator-circle">2</div>
+        <div class="step-label">Barber</div>
+      </button>
+
+      <button type="button" class="step-progress-item" data-step="3">
+        <div class="step-indicator-circle">3</div>
+        <div class="step-label">Date</div>
+      </button>
+
+      <button type="button" class="step-progress-item" data-step="4">
+        <div class="step-indicator-circle">4</div>
+        <div class="step-label">Time</div>
+      </button>
+
+      <button type="button" class="step-progress-item" data-step="5">
+        <div class="step-indicator-circle">5</div>
+        <div class="step-label">Details</div>
+      </button>
+
+      <button type="button" class="step-progress-item" data-step="6">
+        <div class="step-indicator-circle">6</div>
+        <div class="step-label">Confirm</div>
+      </button>
+    </div>
+
+    <!-- Main Wizard Row -->
+    <div class="row g-4" id="booking-main-row">
+      
+      <!-- Left Column: Step Content Wizard Box -->
+      <div class="col-lg-8">
+        <div class="booking-wizard-box" id="booking-wizard-card">
+          
+          <!-- ================= STEP 1: SELECT SERVICE ================= -->
+          <div class="booking-step-pane active" data-step="1">
+            <div class="mb-4">
+              <span class="section-eyebrow">Step 1 of 6</span>
+              <h2 class="font-playfair fs-3 text-ivory mb-1">Select Your Service</h2>
+              <p class="text-muted-ivory small mb-3">Choose from our curated menu of hair, beard, and package rituals.</p>
+
+              <!-- Category filter pills -->
+              <div class="d-flex flex-wrap gap-2 pt-2">
+                <button type="button" class="service-filter-btn active" data-filter="all">All Services</button>
+                <button type="button" class="service-filter-btn" data-filter="hair">Haircut & Styling</button>
+                <button type="button" class="service-filter-btn" data-filter="beard">Beard Sculpt</button>
+                <button type="button" class="service-filter-btn" data-filter="shave">Hot Towel Shave</button>
+                <button type="button" class="service-filter-btn" data-filter="packages">Packages</button>
+              </div>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="row g-3" id="services-grid-container">
+              <!-- Rendered via booking.js -->
+            </div>
+          </div>
+
+          <!-- ================= STEP 2: SELECT BARBER ================= -->
+          <div class="booking-step-pane" data-step="2">
+            <div class="mb-4">
+              <span class="section-eyebrow">Step 2 of 6</span>
+              <h2 class="font-playfair fs-3 text-ivory mb-1">Select Your Master Barber</h2>
+              <p class="text-muted-ivory small mb-0">Choose your preferred resident craftsman or pick 'Any Available Barber' for earliest availability.</p>
+            </div>
+
+            <div class="row g-3" id="barbers-grid-container">
+              <!-- Rendered via booking.js -->
+            </div>
+          </div>
+
+          <!-- ================= STEP 3: CHOOSE DATE ================= -->
+          <div class="booking-step-pane" data-step="3">
+            <div class="mb-4">
+              <span class="section-eyebrow">Step 3 of 6</span>
+              <h2 class="font-playfair fs-3 text-ivory mb-1">Choose Appointment Date</h2>
+              <p class="text-muted-ivory small mb-0">Past dates are disabled. Barber rest days are marked accordingly.</p>
+            </div>
+
+            <div class="calendar-widget">
+              <!-- Calendar Navigation Header -->
+              <div class="calendar-header">
+                <button type="button" class="calendar-nav-btn" id="calendar-prev-month" aria-label="Previous Month">
+                  <i class="bi bi-chevron-left"></i>
+                </button>
+                <h4 class="font-playfair fs-5 text-ivory mb-0" id="calendar-month-year">October 2026</h4>
+                <button type="button" class="calendar-nav-btn" id="calendar-next-month" aria-label="Next Month">
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+              </div>
+
+              <!-- Day of Week Headers -->
+              <div class="calendar-weekdays-grid">
+                <div class="calendar-weekday">Sun</div>
+                <div class="calendar-weekday">Mon</div>
+                <div class="calendar-weekday">Tue</div>
+                <div class="calendar-weekday">Wed</div>
+                <div class="calendar-weekday">Thu</div>
+                <div class="calendar-weekday">Fri</div>
+                <div class="calendar-weekday">Sat</div>
+              </div>
+
+              <!-- Days Grid -->
+              <div class="calendar-days-grid" id="calendar-days-grid">
+                <!-- Rendered dynamically -->
+              </div>
+
+              <!-- Calendar Legend -->
+              <div class="d-flex flex-wrap gap-3 mt-4 pt-3 border-top border-dark-subtle small text-muted-ivory">
+                <div class="d-flex align-items-center">
+                  <span class="d-inline-block bg-bronze rounded me-2" style="width: 14px; height: 14px;"></span> Selected
+                </div>
+                <div class="d-flex align-items-center">
+                  <span class="d-inline-block border border-bronze rounded me-2" style="width: 14px; height: 14px;"></span> Today
+                </div>
+                <div class="d-flex align-items-center">
+                  <span class="d-inline-block bg-dark border border-secondary rounded me-2 opacity-50" style="width: 14px; height: 14px;"></span> Past Date
+                </div>
+                <div class="d-flex align-items-center">
+                  <span class="d-inline-block rounded me-2" style="width: 14px; height: 14px; background-color: rgba(255, 75, 75, 0.3);"></span> Barber Off
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ================= STEP 4: SELECT AVAILABLE TIME ================= -->
+          <div class="booking-step-pane" data-step="4">
+            <div class="mb-4">
+              <span class="section-eyebrow">Step 4 of 6</span>
+              <h2 class="font-playfair fs-3 text-ivory mb-1">Select Available Time</h2>
+              <p class="text-muted-ivory small mb-1">
+                Showing live open slots for: <span id="selected-date-slot-heading" class="text-gold fw-bold">Date</span>
+              </p>
+              <p class="text-muted small mb-0">
+                Slots automatically verify required service duration, barber shifts, and existing bookings.
+              </p>
+            </div>
+
+            <div id="time-slots-container">
+              <!-- Rendered via booking.js -->
+            </div>
+          </div>
+
+          <!-- ================= STEP 5: ENTER CUSTOMER DETAILS ================= -->
+          <div class="booking-step-pane" data-step="5">
+            <div class="mb-4">
+              <span class="section-eyebrow">Step 5 of 6</span>
+              <h2 class="font-playfair fs-3 text-ivory mb-1">Customer Information</h2>
+              <p class="text-muted-ivory small mb-0">Please provide your contact info so we can prepare your chair.</p>
+            </div>
+
+            <form id="customer-details-form" novalidate onsubmit="return false;">
+              <div class="row g-3">
+                <div class="col-12">
+                  <div class="gentlemen-form-group">
+                    <label for="cust-name" class="gentlemen-form-label">Full Name <span class="text-gold">*</span></label>
+                    <input type="text" class="form-control" id="cust-name" placeholder="e.g. Omar El-Sherif" required autocomplete="name">
+                    <div class="invalid-feedback" id="cust-name-feedback">Please enter your full name.</div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="gentlemen-form-group">
+                    <label for="cust-email" class="gentlemen-form-label">Email Address <span class="text-gold">*</span></label>
+                    <input type="email" class="form-control" id="cust-email" placeholder="e.g. omar@example.com" required autocomplete="email">
+                    <div class="invalid-feedback" id="cust-email-feedback">Please enter a valid email address.</div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="gentlemen-form-group">
+                    <label for="cust-phone" class="gentlemen-form-label">Phone Number <span class="text-gold">*</span></label>
+                    <input type="tel" class="form-control" id="cust-phone" placeholder="e.g. +20 100 123 4567" required autocomplete="tel">
+                    <div class="invalid-feedback" id="cust-phone-feedback">Please enter a valid phone number.</div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="gentlemen-form-group">
+                    <label for="cust-notes" class="gentlemen-form-label">Grooming Preferences / Special Notes (Optional)</label>
+                    <textarea class="form-control" id="cust-notes" rows="3" placeholder="Tell us about your haircut history, sensitive skin concerns, preferred beverage, etc."></textarea>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- ================= STEP 6: REVIEW & CONFIRM ================= -->
+          <div class="booking-step-pane" data-step="6">
+            <div class="mb-4">
+              <span class="section-eyebrow">Step 6 of 6</span>
+              <h2 class="font-playfair fs-3 text-ivory mb-1">Review Your Reservation</h2>
+              <p class="text-muted-ivory small mb-0">Please verify your booking summary before locking in your chair.</p>
+            </div>
+
+            <div class="bg-espresso p-4 rounded border border-bronze-subtle mb-4">
+              <div class="row g-4 align-items-center">
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center mb-3">
+                    <img id="review-barber-img" src="assets/images/barber-01.webp" alt="Barber" class="rounded-circle me-3 border border-bronze" style="width: 60px; height: 60px; object-fit: cover;">
+                    <div>
+                      <div class="small text-bronze text-uppercase letter-spacing-1">Resident Barber</div>
+                      <h4 class="font-playfair fs-5 text-ivory mb-0" id="review-barber-name">Marcus Vance</h4>
+                      <div class="small text-muted-ivory" id="review-barber-title">Master Barber</div>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="small text-bronze text-uppercase letter-spacing-1">Service & Duration</div>
+                    <div class="text-ivory fw-bold fs-5" id="review-service-name">Classic Haircut</div>
+                    <div class="text-muted-ivory small" id="review-service-duration">30 minutes</div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 border-start-md border-dark-subtle ps-md-4">
+                  <div class="mb-3">
+                    <div class="small text-bronze text-uppercase letter-spacing-1">Date & Time</div>
+                    <div class="text-ivory fw-bold" id="review-datetime">Friday, Nov 5 &bull; 02:30 PM</div>
+                    <div class="small text-muted-ivory">Zamalek Studio Lounge</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="small text-bronze text-uppercase letter-spacing-1">Client Details</div>
+                    <div class="text-ivory" id="review-customer-name">Client Name</div>
+                    <div class="small text-muted-ivory" id="review-customer-email">client@email.com</div>
+                    <div class="small text-muted-ivory" id="review-customer-phone">+20 100 000 0000</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border-top border-dark-subtle pt-3 mt-3">
+                <div class="small text-bronze text-uppercase letter-spacing-1">Special Notes</div>
+                <p class="text-muted-ivory small mb-0" id="review-customer-notes">None provided.</p>
+              </div>
+
+              <div class="border-top border-dark-subtle pt-3 mt-3 d-flex justify-content-between align-items-center">
+                <span class="text-ivory fw-semibold">Total Due At Studio:</span>
+                <span class="fs-4 font-playfair text-gold fw-bold" id="review-service-price">250 EGP</span>
+              </div>
+            </div>
+
+            <div class="p-3 bg-charcoal-deep rounded border border-dark-subtle small text-muted-ivory mb-4">
+              <i class="bi bi-shield-check text-gold me-2"></i>
+              <strong>Booking Policy:</strong> You may cancel or reschedule at no charge up to 2 hours before your scheduled time. In demo mode, this appointment will be recorded exclusively in your local browser storage.
+            </div>
+
+            <button type="button" class="btn btn-bronze w-100 py-3 fs-6" id="booking-btn-submit">
+              Confirm Reservation <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
+
+          <!-- Wizard Back & Next Action Bar (Steps 1–5) -->
+          <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top border-dark-subtle">
+            <button type="button" class="btn btn-outline-bronze px-4" id="booking-btn-back" style="visibility: hidden;">
+              <i class="bi bi-arrow-left me-1"></i> Back
+            </button>
+
+            <button type="button" class="btn btn-bronze px-5" id="booking-btn-next" disabled>
+              Continue <i class="bi bi-arrow-right ms-1"></i>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- ================= CONFIRMATION SUCCESS PANE ================= -->
+        <div id="booking-confirmation-pane" class="d-none">
+          <div class="confirmation-receipt-card text-center">
+            
+            <div class="mb-4">
+              <i class="bi bi-check2-circle text-gold display-3 d-block mb-2"></i>
+              <span class="section-eyebrow">Reservation Confirmed</span>
+              <h2 class="font-playfair text-ivory mb-2">We Look Forward to Welcoming You</h2>
+              <p class="text-muted-ivory small mb-4">Your appointment has been secured and logged in your browser's demo storage.</p>
+              
+              <div class="mb-4">
+                <span class="small text-muted d-block mb-1">Your Booking Reference:</span>
+                <span class="booking-ref-badge" id="conf-ref-id">TG-849201</span>
+              </div>
+            </div>
+
+            <!-- Receipt Breakdown Table -->
+            <div class="bg-charcoal p-4 rounded border border-bronze-subtle text-start mb-4">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <span class="small text-muted d-block">Service:</span>
+                  <span class="text-ivory fw-semibold" id="conf-service">Classic Haircut</span>
+                </div>
+                <div class="col-sm-6">
+                  <span class="small text-muted d-block">Craftsman:</span>
+                  <span class="text-ivory fw-semibold" id="conf-barber">Marcus Vance</span>
+                </div>
+                <div class="col-sm-6">
+                  <span class="small text-muted d-block">Date & Time:</span>
+                  <span class="text-gold fw-semibold" id="conf-datetime">Nov 5, 2026 at 2:30 PM</span>
+                </div>
+                <div class="col-sm-6">
+                  <span class="small text-muted d-block">Total to Pay (in Studio):</span>
+                  <span class="text-ivory fw-bold" id="conf-price">250 EGP</span>
+                </div>
+                <div class="col-12 border-top border-dark-subtle pt-2">
+                  <span class="small text-muted d-block">Client:</span>
+                  <span class="text-ivory" id="conf-customer-name">Client</span> &bull; 
+                  <span class="text-muted-ivory small" id="conf-customer-contact">email@example.com</span>
+                </div>
+                <div class="col-12">
+                  <span class="small text-muted d-block">Location:</span>
+                  <span class="text-muted-ivory small">14 El-Gezira Street, Zamalek, Cairo (Valet available)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+              <button type="button" class="btn btn-outline-bronze" id="btn-download-calendar">
+                <i class="bi bi-calendar-event me-2"></i> Add to Calendar (.ics)
+              </button>
+              <a href="my-bookings.html" class="btn btn-bronze">
+                <i class="bi bi-journal-bookmark me-2"></i> View in My Bookings
+              </a>
+              <a href="booking.html" class="btn btn-outline-light-custom">
+                Book Another Appointment
+              </a>
+            </div>
+
+            <div class="small text-muted-ivory pt-3 border-top border-dark-subtle">
+              <i class="bi bi-info-circle me-1 text-gold"></i>
+              Frontend Demo Note: No actual calendar server or SMS gateway was notified. This booking exists safely in your current browser session.
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky Live Booking Summary -->
+      <div class="col-lg-4">
+        <div class="booking-summary-box" id="booking-summary-sidebar">
+          <div class="d-flex justify-content-between align-items-center pb-3 mb-3 border-bottom border-dark-subtle">
+            <h4 class="font-playfair fs-5 text-ivory mb-0">Booking Summary</h4>
+            <span class="badge bg-espresso-subtle text-gold border border-bronze-subtle small">Demo Cart</span>
+          </div>
+
+          <!-- Service row -->
+          <div class="mb-3">
+            <span class="small text-bronze text-uppercase letter-spacing-1 d-block mb-1">Service</span>
+            <div class="d-flex justify-content-between align-items-start">
+              <span class="text-ivory fw-semibold" id="sum-service-name">Not selected</span>
+              <span class="text-gold fw-bold" id="sum-service-price">0 EGP</span>
+            </div>
+            <div class="small text-muted-ivory" id="sum-service-duration">—</div>
+          </div>
+
+          <!-- Barber row -->
+          <div class="mb-3 pb-3 border-bottom border-dark-subtle">
+            <span class="small text-bronze text-uppercase letter-spacing-1 d-block mb-1">Barber</span>
+            <div class="d-flex align-items-center">
+              <img id="sum-barber-img" src="assets/images/about-interior.webp" alt="Barber" class="rounded-circle me-2 border border-bronze d-none" style="width: 32px; height: 32px; object-fit: cover;">
+              <span class="text-ivory" id="sum-barber-name">Not selected</span>
+            </div>
+          </div>
+
+          <!-- Date & Time row -->
+          <div class="mb-3 pb-3 border-bottom border-dark-subtle">
+            <span class="small text-bronze text-uppercase letter-spacing-1 d-block mb-1">Scheduled Time</span>
+            <div class="text-ivory" id="sum-date">Not selected</div>
+            <div class="text-gold fw-semibold" id="sum-time">Not selected</div>
+          </div>
+
+          <!-- Location Info -->
+          <div class="small text-muted-ivory mb-4">
+            <div class="d-flex align-items-start">
+              <i class="bi bi-geo-alt text-gold me-2 mt-1"></i>
+              <div>
+                <span class="text-ivory d-block">THE GENTLEMEN Studio</span>
+                14 El-Gezira St, Zamalek, Cairo
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-charcoal rounded border border-dark-subtle small text-muted">
+            <i class="bi bi-cash-coin text-gold me-1"></i> Payment is collected in person at the studio upon service completion.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="gentlemen-footer mt-5">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="brand-logo-link mb-3">
+            <span class="brand-logo-title">THE GENTLEMEN</span>
+            <span class="brand-logo-subtitle">FINE GROOMING STUDIO</span>
+          </div>
+          <p class="small text-muted-ivory mb-4">
+            A bespoke men's barbershop committed to reviving the noble heritage of classic barbering with modern aesthetic precision.
+          </p>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h5 class="font-playfair fs-6 text-ivory mb-3 text-uppercase letter-spacing-1">Navigation</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="footer-nav-link">Home</a></li>
+            <li><a href="services.html" class="footer-nav-link">Services Menu</a></li>
+            <li><a href="barbers.html" class="footer-nav-link">Resident Barbers</a></li>
+            <li><a href="booking.html" class="footer-nav-link">Book Appointment</a></li>
+            <li><a href="my-bookings.html" class="footer-nav-link">My Bookings</a></li>
+            <li><a href="contact.html" class="footer-nav-link">Contact Studio</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <h5 class="font-playfair fs-6 text-ivory mb-3 text-uppercase letter-spacing-1">Opening Hours</h5>
+          <p class="small text-muted-ivory mb-1">Mon–Thu: 10AM – 10PM</p>
+          <p class="small text-muted-ivory mb-1">Fri: 1PM – 11PM</p>
+          <p class="small text-muted-ivory mb-0">Sat–Sun: 10AM – 11PM</p>
+        </div>
+
+        <div class="col-lg-3">
+          <h5 class="font-playfair fs-6 text-ivory mb-3 text-uppercase letter-spacing-1">Demo Guarantee</h5>
+          <p class="small text-muted-ivory">
+            Demonstration portfolio booking engine. No charge is incurred.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 pt-4 border-top border-dark-subtle d-flex flex-wrap justify-content-between align-items-center small text-muted-ivory">
+        <div>&copy; <span id="current-year">2026</span> THE GENTLEMEN Barbershop. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Modular Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/booking.js"></script>
+</body>
+</html>

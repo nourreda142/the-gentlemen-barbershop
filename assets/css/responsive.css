@@ -1,0 +1,246 @@
+/**
+ * THE GENTLEMEN — Responsive Stylesheet
+ * Breakpoint refinements for Mobile (320px-767px), Tablet (768px-1023px), and Desktop (1024px+).
+ */
+
+/* ==========================================================================
+   1. DESKTOP & LARGE SCREENS (>= 1024px)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .hero-section {
+    min-height: 90vh;
+  }
+
+  .booking-wizard-box {
+    padding: 3rem 2.75rem;
+  }
+
+  .service-card-img-wrapper {
+    height: 230px;
+  }
+
+  .barber-card-img-wrapper {
+    height: 330px;
+  }
+}
+
+/* ==========================================================================
+   2. TABLET SCREENS (768px – 1023px)
+   ========================================================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-section {
+    min-height: 75vh;
+  }
+
+  .section-padding {
+    padding: 5rem 0;
+  }
+
+  .booking-wizard-box {
+    padding: 2rem 1.75rem;
+  }
+
+  .booking-summary-box {
+    position: static;
+    margin-top: 2rem;
+  }
+
+  .service-card-img-wrapper {
+    height: 200px;
+  }
+
+  .barber-card-img-wrapper {
+    height: 280px;
+  }
+}
+
+/* ==========================================================================
+   3. MOBILE SCREENS (320px – 767px)
+   ========================================================================== */
+@media (max-width: 767px) {
+  /* Prevent horizontal scroll */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Typography adjustments */
+  .section-padding {
+    padding: 3.75rem 0;
+  }
+
+  .hero-section {
+    min-height: 80vh;
+  }
+
+  .hero-content {
+    padding: 4.5rem 0 3.5rem;
+    text-align: center;
+  }
+
+  .hero-feature-stat {
+    border-left: none;
+    border-top: 2px solid var(--color-bronze);
+    padding-left: 0;
+    padding-top: 0.85rem;
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  /* Mobile Navbar */
+  .gentlemen-top-bar {
+    display: none;
+  }
+
+  .gentlemen-navbar {
+    padding: 0.85rem 0;
+  }
+
+  .navbar-collapse {
+    background-color: var(--color-charcoal-deep);
+    border: 1px solid var(--color-bronze-subtle);
+    border-radius: var(--radius-sm);
+    margin-top: 1rem;
+    padding: 1.25rem 1rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.75rem 0 !important;
+    border-bottom: 1px solid rgba(243, 237, 227, 0.05);
+  }
+
+  .navbar-nav .nav-link.active::after {
+    display: none;
+  }
+
+  /* Booking Wizard Stepper */
+  .booking-stepper-container {
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 1.75rem;
+    justify-content: flex-start;
+    gap: 1.25rem;
+  }
+
+  .booking-stepper-container::before {
+    display: none; /* Hide connector bar on small scrolling rows */
+  }
+
+  .step-progress-item {
+    flex-shrink: 0;
+    min-width: 65px;
+  }
+
+  .step-indicator-circle {
+    width: 34px;
+    height: 34px;
+    font-size: 0.78rem;
+  }
+
+  .step-label {
+    font-size: 0.65rem;
+  }
+
+  .booking-wizard-box {
+    padding: 1.5rem 1rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .booking-summary-box {
+    position: static;
+    margin-top: 1.5rem;
+    padding: 1.25rem 1rem;
+  }
+
+  /* Calendar Widget on Mobile */
+  .calendar-widget {
+    padding: 1rem 0.5rem;
+  }
+
+  .calendar-days-grid {
+    gap: 4px;
+  }
+
+  .calendar-day {
+    height: 44px; /* Ensure 44px touch target */
+    font-size: 0.88rem;
+  }
+
+  .calendar-weekday {
+    font-size: 0.68rem;
+  }
+
+  /* Time slot grid */
+  .time-slot-btn {
+    min-height: 48px;
+    padding: 0.5rem 0.2rem;
+  }
+
+  .time-slot-btn .time-label {
+    font-size: 0.78rem;
+  }
+
+  .time-slot-btn .slot-subtext {
+    font-size: 0.6rem;
+  }
+
+  /* Cards & Layout */
+  .service-card-img-wrapper {
+    height: 180px;
+  }
+
+  .barber-card-img-wrapper {
+    height: 240px;
+  }
+
+  .confirmation-receipt-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .booking-ref-badge {
+    font-size: 0.95rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  /* Touch targets minimum 44px */
+  .btn,
+  .calendar-nav-btn,
+  .service-filter-btn {
+    min-height: 44px;
+  }
+
+  /* Footer */
+  .gentlemen-footer {
+    padding: 3.5rem 0 2rem;
+  }
+}
+
+/* ==========================================================================
+   4. ACCESSIBILITY & PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .service-card-img,
+  .barber-card-img,
+  .gallery-grid-img {
+    transition: none !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Bookings — THE GENTLEMEN Barbershop</title>
+  <meta name="description" content="Manage your saved appointments at THE GENTLEMEN. View upcoming sessions, reschedule dates, or cancel with instant confirmation.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body class="bg-charcoal">
+
+  <!-- Top Strip -->
+  <div class="demo-disclaimer-strip text-center">
+    <div class="container d-flex justify-content-between align-items-center">
+      <span class="d-none d-md-inline"><i class="bi bi-info-circle text-gold me-1"></i> Interactive Frontend Portfolio Project &bull; Demo Mode</span>
+      <span class="mx-auto mx-md-0"><i class="bi bi-hdd-network text-gold me-1"></i> Client Storage: Appointments Stored Locally In Your Browser</span>
+      <a href="booking.html" class="text-gold text-decoration-none small d-none d-md-inline"><i class="bi bi-plus-circle me-1"></i> New Booking</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg gentlemen-navbar sticky-top">
+    <div class="container">
+      <a class="brand-logo-link" href="index.html">
+        <span class="brand-logo-title">THE GENTLEMEN</span>
+        <span class="brand-logo-subtitle">EST. 2021 &bull; FINE GROOMING STUDIO</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBookingsContent" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-2 text-gold"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarBookingsContent">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="barbers.html">Our Barbers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="my-bookings.html">My Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+            <a href="booking.html" class="btn btn-bronze px-4 py-2">
+              <i class="bi bi-scissors me-1"></i> Book Appointment
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Editorial Header -->
+  <header class="py-5 bg-charcoal-deep border-bottom border-dark-subtle position-relative overflow-hidden">
+    <div class="container py-3">
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div>
+          <span class="section-eyebrow">Client Dashboard</span>
+          <h1 class="display-5 font-playfair text-ivory mb-2">My Appointments</h1>
+          <p class="text-muted-ivory small mb-0">Manage, reschedule, or cancel your upcoming and past studio reservations.</p>
+        </div>
+        <div class="d-flex gap-2">
+          <a href="booking.html" class="btn btn-bronze">
+            <i class="bi bi-plus-lg me-1"></i> New Booking
+          </a>
+          <button type="button" class="btn btn-outline-light-custom" id="btn-reset-demo" title="Reset sample records for demonstration">
+            <i class="bi bi-arrow-counterclockwise me-1"></i> Reset Demo Data
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="section-padding bg-charcoal">
+    <div class="container">
+      
+      <!-- Privacy / LocalStorage Explanation Banner -->
+      <div class="p-3 bg-espresso rounded border border-bronze-subtle mb-4 d-flex align-items-center justify-content-between flex-wrap gap-2 small">
+        <div class="text-muted-ivory">
+          <i class="bi bi-shield-check text-gold fs-5 me-2 align-middle"></i>
+          <span><strong>Browser Privacy Notice:</strong> Appointments displayed below are stored strictly inside your current web browser's <code>localStorage</code>. No remote server is tracking or synchronizing your personal data.</span>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-danger" id="btn-clear-all" style="padding: 0.35rem 0.85rem; font-size: 0.75rem;">
+          <i class="bi bi-trash3 me-1"></i> Clear All Records
+        </button>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="d-flex flex-wrap gap-2 mb-4" id="bookings-filter-tabs">
+        <button type="button" class="service-filter-btn active" data-filter="all">
+          All Bookings (<span id="count-all">0</span>)
+        </button>
+        <button type="button" class="service-filter-btn" data-filter="upcoming">
+          Upcoming (<span id="count-upcoming">0</span>)
+        </button>
+        <button type="button" class="service-filter-btn" data-filter="completed">
+          Past / Completed (<span id="count-completed">0</span>)
+        </button>
+        <button type="button" class="service-filter-btn" data-filter="cancelled">
+          Cancelled (<span id="count-cancelled">0</span>)
+        </button>
+      </div>
+
+      <!-- Bookings Cards Container -->
+      <div class="row g-4" id="bookings-list-container">
+        <!-- Rendered via JavaScript -->
+      </div>
+
+      <!-- Empty State (Hidden when items exist) -->
+      <div id="bookings-empty-state" class="text-center py-5 d-none">
+        <div class="bg-espresso p-5 rounded border border-bronze-subtle mx-auto" style="max-width: 580px;">
+          <i class="bi bi-calendar-x fs-1 text-gold mb-3 d-block"></i>
+          <h3 class="font-playfair text-ivory mb-2">No Appointments Found</h3>
+          <p class="text-muted-ivory small mb-4">
+            There are currently no appointments matching this tab in your browser's local records.
+          </p>
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="booking.html" class="btn btn-bronze">
+              <i class="bi bi-scissors me-1"></i> Book Your First Visit
+            </a>
+            <button type="button" class="btn btn-outline-bronze" id="btn-empty-seed">
+              <i class="bi bi-magic me-1"></i> Load Demo Sample Bookings
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="gentlemen-footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="brand-logo-link mb-3">
+            <span class="brand-logo-title">THE GENTLEMEN</span>
+            <span class="brand-logo-subtitle">FINE GROOMING STUDIO</span>
+          </div>
+          <p class="small text-muted-ivory mb-4">
+            A bespoke men's barbershop committed to reviving the noble heritage of classic barbering with modern aesthetic precision.
+          </p>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h5 class="font-playfair fs-6 text-ivory mb-3 text-uppercase letter-spacing-1">Navigation</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="footer-nav-link">Home</a></li>
+            <li><a href="services.html" class="footer-nav-link">Services Menu</a></li>
+            <li><a href="barbers.html" class="footer-nav-link">Resident Barbers</a></li>
+            <li><a href="booking.html" class="footer-nav-link">Book Appointment</a></li>
+            <li><a href="my-bookings.html" class="footer-nav-link">My Bookings</a></li>
+            <li><a href="contact.html" class="footer-nav-link">Contact Studio</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <h5 class="font-playfair fs-6 text-ivory mb-3 text-uppercase letter-spacing-1">Studio Address</h5>
+          <p class="small text-muted-ivory mb-2">
+            14 El-Gezira Street, Zamalek<br>Cairo, Egypt
+          </p>
+          <p class="small text-muted-ivory mb-0">
+            Tel: +20 2 2736 8890
+          </p>
+        </div>
+
+        <div class="col-lg-3">
+          <h5 class="font-playfair fs-6 text-ivory mb-3 text-uppercase letter-spacing-1">Demo Notice</h5>
+          <p class="small text-muted-ivory">
+            Demonstration portfolio application. Bookings are saved in your local browser storage.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 pt-4 border-top border-dark-subtle d-flex flex-wrap justify-content-between align-items-center small text-muted-ivory">
+        <div>&copy; <span id="current-year">2026</span> THE GENTLEMEN Barbershop. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Modular Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <!-- Page Controller Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('bookings-list-container');
+      const emptyState = document.getElementById('bookings-empty-state');
+      const filterBtns = document.querySelectorAll('#bookings-filter-tabs .service-filter-btn');
+
+      let currentFilter = 'all';
+
+      function formatTime12h(timeStr) {
+        if (!timeStr) return '';
+        const [h, m] = timeStr.split(':').map(Number);
+        const period = h >= 12 ? 'PM' : 'AM';
+        const hour12 = h % 12 || 12;
+        return `${String(hour12).padStart(2, '0')}:${String(m).padStart(2, '0')} ${period}`;
+      }
+
+      function formatDateFriendly(dateStr) {
+        if (!dateStr) return '';
+        const [y, m, d] = dateStr.split('-').map(Number);
+        const date = new Date(y, m - 1, d);
+        return date.toLocaleDateString('en-US', {
+          weekday: 'long',
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric'
+        });
+      }
+
+      function isUpcoming(booking) {
+        if (booking.status === 'cancelled') return false;
+        const now = new Date();
+        const appointmentDt = new Date(`${booking.date}T${booking.time}:00`);
+        return appointmentDt >= now;
+      }
+
+      function isCompleted(booking) {
+        if (booking.status === 'completed') return true;
+        if (booking.status === 'cancelled') return false;
+        const now = new Date();
+        const appointmentDt = new Date(`${booking.date}T${booking.time}:00`);
+        return appointmentDt < now;
+      }
+
+      function downloadIcs(booking) {
+        const [y, m, d] = booking.date.split('-').map(Number);
+        const [sh, sm] = booking.time.split(':').map(Number);
+        const [eh, em] = (booking.endTime || '12:00').split(':').map(Number);
+
+        const pad = (n) => String(n).padStart(2, '0');
+        const startIso = `${y}${pad(m)}${pad(d)}T${pad(sh)}${pad(sm)}00`;
+        const endIso = `${y}${pad(m)}${pad(d)}T${pad(eh)}${pad(em)}00`;
+
+        const icsContent = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//THE GENTLEMEN//Appointment//EN',
+          'CALSCALE:GREGORIAN',
+          'METHOD:PUBLISH',
+          'BEGIN:VEVENT',
+          `UID:${booking.id}@thegentlemenbarbers.com`,
+          `DTSTAMP:${startIso}Z`,
+          `DTSTART:${startIso}`,
+          `DTEND:${endIso}`,
+          `SUMMARY:THE GENTLEMEN — ${booking.serviceName} with ${booking.barberName}`,
+          `DESCRIPTION:Appointment Reference: ${booking.id}\\nService: ${booking.serviceName} (${booking.duration} min)\\nBarber: ${booking.barberName}\\nLocation: 14 El-Gezira St, Zamalek, Cairo`,
+          'LOCATION:14 El-Gezira Street, Zamalek, Cairo, Egypt',
+          'STATUS:CONFIRMED',
+          'END:VEVENT',
+          'END:VCALENDAR'
+        ].join('\r\n');
+
+        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.setAttribute('download', `${booking.id}-the-gentlemen.ics`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      function render() {
+        const allBookings = GENTLEMEN_STORAGE.getBookings();
+
+        // Update tab counts
+        const countUpcoming = allBookings.filter(isUpcoming).length;
+        const countCompleted = allBookings.filter(isCompleted).length;
+        const countCancelled = allBookings.filter(b => b.status === 'cancelled').length;
+
+        document.getElementById('count-all').textContent = allBookings.length;
+        document.getElementById('count-upcoming').textContent = countUpcoming;
+        document.getElementById('count-completed').textContent = countCompleted;
+        document.getElementById('count-cancelled').textContent = countCancelled;
+
+        // Apply tab filter
+        let filtered = allBookings;
+        if (currentFilter === 'upcoming') {
+          filtered = allBookings.filter(isUpcoming);
+        } else if (currentFilter === 'completed') {
+          filtered = allBookings.filter(isCompleted);
+        } else if (currentFilter === 'cancelled') {
+          filtered = allBookings.filter(b => b.status === 'cancelled');
+        }
+
+        if (filtered.length === 0) {
+          container.innerHTML = '';
+          emptyState.classList.remove('d-none');
+          return;
+        }
+
+        emptyState.classList.add('d-none');
+
+        container.innerHTML = filtered.map(booking => {
+          const upcoming = isUpcoming(booking);
+          const completed = isCompleted(booking);
+          const cancelled = booking.status === 'cancelled';
+
+          let statusBadgeClass = 'confirmed';
+          let statusText = 'Confirmed';
+
+          if (cancelled) {
+            statusBadgeClass = 'cancelled';
+            statusText = 'Cancelled';
+          } else if (completed) {
+            statusBadgeClass = 'completed';
+            statusText = 'Completed';
+          }
+
+          return `
+            <div class="col-lg-6">
+              <div class="my-booking-card h-100 d-flex flex-column justify-content-between">
+                <div>
+                  <!-- Card Header: Reference & Status Badge -->
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="booking-ref-badge" style="font-size: 0.88rem; padding: 0.25rem 0.65rem;">
+                      ${booking.id}
+                    </span>
+                    <span class="booking-status-badge ${statusBadgeClass}">
+                      ${statusText}
+                    </span>
+                  </div>
+
+                  <!-- Service & Barber Info -->
+                  <div class="row g-3 align-items-center mb-3 pb-3 border-bottom border-dark-subtle">
+                    <div class="col-auto">
+                      <img src="${booking.barberImage || 'assets/images/about-interior.webp'}" alt="${booking.barberName}" class="rounded-circle border border-bronze" style="width: 54px; height: 54px; object-fit: cover;">
+                    </div>
+                    <div class="col">
+                      <div class="font-playfair fs-5 text-ivory mb-0">${booking.serviceName}</div>
+                      <div class="small text-bronze fw-semibold">With ${booking.barberName}</div>
+                    </div>
+                    <div class="col-auto text-end">
+                      <div class="fs-5 font-playfair text-gold fw-bold">${booking.servicePrice} <small class="small fs-6">EGP</small></div>
+                      <div class="small text-muted-ivory">${booking.duration} mins</div>
+                    </div>
+                  </div>
+
+                  <!-- Date & Time Details -->
+                  <div class="row g-2 mb-3 small text-muted-ivory">
+                    <div class="col-12 d-flex align-items-center">
+                      <i class="bi bi-calendar3 text-gold me-2"></i>
+                      <span class="text-ivory fw-semibold">${formatDateFriendly(booking.date)}</span>
+                    </div>
+                    <div class="col-12 d-flex align-items-center">
+                      <i class="bi bi-clock text-gold me-2"></i>
+                      <span>${formatTime12h(booking.time)} – ${formatTime12h(booking.endTime || '')}</span>
+                    </div>
+                    <div class="col-12 d-flex align-items-center">
+                      <i class="bi bi-geo-alt text-gold me-2"></i>
+                      <span>14 El-Gezira St, Zamalek, Cairo</span>
+                    </div>
+                    ${booking.customer.notes ? `
+                      <div class="col-12 mt-2 pt-2 border-top border-dark-subtle">
+                        <span class="text-gold small d-block">Client Notes:</span>
+                        <span class="text-ivory fst-italic">"${booking.customer.notes}"</span>
+                      </div>
+                    ` : ''}
+                  </div>
+                </div>
+
+                <!-- Actions Bar -->
+                <div class="pt-3 border-top border-dark-subtle d-flex flex-wrap justify-content-between align-items-center gap-2">
+                  <div class="small text-muted">
+                    Booked for: <strong class="text-ivory">${booking.customer.name}</strong>
+                  </div>
+
+                  <div class="d-flex gap-2">
+                    ${upcoming ? `
+                      <button type="button" class="btn btn-outline-light-custom btn-sm btn-ics" data-id="${booking.id}" title="Download Calendar invite">
+                        <i class="bi bi-calendar-event"></i>
+                      </button>
+                      <a href="booking.html?reschedule=${booking.id}" class="btn btn-outline-bronze btn-sm">
+                        <i class="bi bi-arrow-repeat me-1"></i> Reschedule
+                      </a>
+                      <button type="button" class="btn btn-outline-danger btn-sm btn-cancel-booking" data-id="${booking.id}">
+                        Cancel
+                      </button>
+                    ` : ''}
+
+                    ${cancelled ? `
+                      <a href="booking.html?service=${booking.serviceId}&barber=${booking.barberId}" class="btn btn-outline-bronze btn-sm">
+                        <i class="bi bi-arrow-counterclockwise me-1"></i> Rebook Service
+                      </a>
+                    ` : ''}
+
+                    ${completed ? `
+                      <a href="booking.html?service=${booking.serviceId}&barber=${booking.barberId}" class="btn btn-outline-bronze btn-sm">
+                        <i class="bi bi-scissors me-1"></i> Book Again
+                      </a>
+                    ` : ''}
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        // Attach event handlers
+        container.querySelectorAll('.btn-cancel-booking').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            const bookingId = btn.getAttribute('data-id');
+            const confirmed = await GentlemenUI.confirmModal({
+              title: 'Cancel Appointment?',
+              message: `Are you sure you wish to cancel reservation ${bookingId}? Your slot will be immediately freed up for other gentlemen.`,
+              confirmText: 'Yes, Cancel Appointment',
+              cancelText: 'Keep Appointment',
+              isDanger: true
+            });
+
+            if (confirmed) {
+              GENTLEMEN_STORAGE.cancelBooking(bookingId);
+              GentlemenUI.showToast({
+                title: 'Appointment Cancelled',
+                message: `Reservation ${bookingId} has been marked as cancelled.`,
+                type: 'warning'
+              });
+              render();
+            }
+          });
+        });
+
+        container.querySelectorAll('.btn-ics').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const bookingId = btn.getAttribute('data-id');
+            const target = GENTLEMEN_STORAGE.getBookingById(bookingId);
+            if (target) downloadIcs(target);
+          });
+        });
+      }
+
+      // Filter tabs event
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentFilter = btn.getAttribute('data-filter');
+          render();
+        });
+      });
+
+      // Reset to Demo button
+      document.getElementById('btn-reset-demo').addEventListener('click', async () => {
+        const confirmed = await GentlemenUI.confirmModal({
+          title: 'Reset Demo Data?',
+          message: 'This will restore the realistic pre-seeded upcoming and completed sample bookings for testing.',
+          confirmText: 'Reset Demo Data',
+          cancelText: 'Cancel'
+        });
+
+        if (confirmed) {
+          GENTLEMEN_STORAGE.resetToDemo();
+          GentlemenUI.showToast({
+            title: 'Demo Data Restored',
+            message: 'Sample demo appointments restored successfully.',
+            type: 'info'
+          });
+          render();
+        }
+      });
+
+      // Clear all records button
+      document.getElementById('btn-clear-all').addEventListener('click', async () => {
+        const confirmed = await GentlemenUI.confirmModal({
+          title: 'Clear All Saved Appointments?',
+          message: 'This will remove all stored reservations from your browser.',
+          confirmText: 'Clear Everything',
+          cancelText: 'Keep Records',
+          isDanger: true
+        });
+
+        if (confirmed) {
+          GENTLEMEN_STORAGE.clearAll();
+          GentlemenUI.showToast({
+            title: 'Records Cleared',
+            message: 'All local demo bookings have been removed.',
+            type: 'info'
+          });
+          render();
+        }
+      });
+
+      // Empty state seed button
+      const emptySeedBtn = document.getElementById('btn-empty-seed');
+      if (emptySeedBtn) {
+        emptySeedBtn.addEventListener('click', () => {
+          GENTLEMEN_STORAGE.resetToDemo();
+          render();
+        });
+      }
+
+      render();
+    });
+  </script>
+</body>
+</html>

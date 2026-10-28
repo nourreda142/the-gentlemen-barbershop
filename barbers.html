@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Barbers & Master Craftsmen — THE GENTLEMEN</title>
+  <meta name="description" content="Meet our resident master barbers: Marcus Vance, Julian Thorne, and David Sterling. Over 30 years of collective precision haircutting and shave craftsmanship.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+
+  <!-- Top Strip -->
+  <div class="demo-disclaimer-strip text-center">
+    <div class="container d-flex justify-content-between align-items-center">
+      <span class="d-none d-md-inline"><i class="bi bi-info-circle text-gold me-1"></i> Interactive Frontend Portfolio Project &bull; Demo Mode</span>
+      <span class="mx-auto mx-md-0"><i class="bi bi-geo-alt text-gold me-1"></i> 14 El-Gezira St, Zamalek, Cairo &bull; Tel: +20 2 2736 8890</span>
+      <a href="my-bookings.html" class="text-gold text-decoration-none small d-none d-md-inline"><i class="bi bi-calendar-check me-1"></i> My Bookings</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg gentlemen-navbar sticky-top">
+    <div class="container">
+      <a class="brand-logo-link" href="index.html">
+        <span class="brand-logo-title">THE GENTLEMEN</span>
+        <span class="brand-logo-subtitle">EST. 2021 &bull; FINE GROOMING STUDIO</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBarbersContent" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-2 text-gold"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarBarbersContent">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="barbers.html">Our Barbers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="my-bookings.html">My Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+            <a href="booking.html" class="btn btn-bronze px-4 py-2">
+              <i class="bi bi-scissors me-1"></i> Book Appointment
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Editorial Header -->
+  <header class="py-5 bg-charcoal-deep border-bottom border-dark-subtle position-relative overflow-hidden">
+    <div class="container py-4 text-center">
+      <span class="section-eyebrow">The Resident Craftsmen</span>
+      <h1 class="display-4 font-playfair text-ivory mb-3">Mastery in Every Stroke</h1>
+      <div class="gold-divider mx-auto mb-3"></div>
+      <p class="section-subtitle mx-auto">
+        Each barber at THE GENTLEMEN brings distinctive artistic pedigree, disciplined scissor technique, and an intuitive eye for facial symmetry.
+      </p>
+    </div>
+  </header>
+
+  <!-- Barbers In-Depth Profiles Section -->
+  <section class="section-padding bg-charcoal">
+    <div class="container">
+      <div class="row g-5">
+        
+        <!-- Barber 1: Marcus Vance -->
+        <div class="col-lg-4 col-md-6">
+          <div class="barber-preview-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="barber-card-img-wrapper position-relative">
+                <img src="assets/images/barber-01.webp" alt="Marcus Vance - Master Barber" class="barber-card-img" loading="eager">
+                <div class="barber-card-rating">
+                  <i class="bi bi-star-fill text-gold me-1"></i> 4.98 <small>(640 reviews)</small>
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <h3 class="font-playfair fs-4 text-ivory mb-0">Marcus Vance</h3>
+                  <span class="badge bg-espresso-subtle text-bronze border border-bronze-subtle">12+ Years Exp</span>
+                </div>
+                <div class="text-bronze small fw-semibold mb-3">Master Barber & Creative Director</div>
+                
+                <p class="text-muted-ivory small mb-4">
+                  Trained in Mayfair, London, Marcus brings classical English precision to contemporary men's silhouettes. Renowned for scissor-over-comb craftsmanship and architectural hair designs that grow out impeccably.
+                </p>
+
+                <div class="mb-3">
+                  <span class="small text-bronze fw-semibold d-block mb-2 text-uppercase letter-spacing-1">Core Specialties:</span>
+                  <div class="d-flex flex-wrap gap-1">
+                    <span class="badge bg-espresso text-ivory border border-dark-subtle small">Classic Shear Work</span>
+                    <span class="badge bg-espresso text-ivory border border-dark-subtle small">Executive Styling</span>
+                    <span class="badge bg-espresso text-ivory border border-dark-subtle small">Scissor-over-Comb</span>
+                    <span class="badge bg-espresso text-ivory border border-dark-subtle small">Texture Formulation</span>
+                  </div>
+                </div>
+
+                <div class="p-3 bg-charcoal-deep rounded border border-dark-subtle small mb-2">
+                  <div class="d-flex justify-content-between text-muted-ivory mb-1">
+                    <span><i class="bi bi-calendar3 me-1 text-gold"></i> Working Days:</span>
+                    <span class="text-ivory fw-semibold">Monday – Saturday</span>
+                  </div>
+                  <div class="d-flex justify-content-between text-muted-ivory">
+                    <span><i class="bi bi-clock me-1 text-gold"></i> Chair Hours:</span>
+                    <span class="text-ivory fw-semibold">10:00 AM – 08:00 PM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 pt-0">
+              <a href="booking.html?barber=marcus-vance" class="btn btn-bronze w-100 py-2">
+                <i class="bi bi-calendar-check me-1"></i> Book with Marcus
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barber 2: Julian Thorne -->
+        <div class="col-lg-4 col-md-6">
+          <div class="barber-preview-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="barber-card-img-wrapper position-relative">
+                <img src="assets/images/barber-02.webp" alt="Julian Thorne - Senior Fade Specialist" class="barber-card-img" loading="eager">
+                <div class="barber-card-rating">
+                  <i class="bi bi-star-fill text-gold me-1"></i> 4.96 <small>(512 reviews)</small>
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <h3 class="font-playfair fs-4 text-ivory mb-0">Julian Thorne</h3>
+                  <span class="badge bg-espresso-subtle text-bronze border border-bronze-subtle">8+ Years Exp</span>
+                </div>
+                <div class="text-bronze small fw-semibold mb-3">Senior Fade Specialist & Beard Artisan</div>
+                
+                <p class="text-muted-ivory small mb-4">
+                  Julian is a master of contrast and modern gradients. His razor-sharp tape-ups, seamless skin fades, and symmetrical beard architecture make him the go-to specialist for bold, razor-defined aesthetics.
+                </p>
+
+                <div class="mb-3">
+                  <span class="small text-bronze fw-semibold d-block mb-2 text-uppercase letter-spacing-1">Core Specialties:</span>
+                  <div class="d-flex flex-wrap gap-1">
+                    <span class="badge bg-espresso text-ivory border border-dark-subtle small">Low / Mid / High Fades</span>
+                    <span class="badge bg-espresso text-ivory border border-dark-subtle small">Beard Sculpting</span>
+                    <span class="badge bg-espresso text-ivory border border-dark-subtle small">Razor Lining</span>
+                    <span class="badge bg-espresso text-ivory border border-dark-subtle small">Hair Art & Geometry</span>
+                  </div>
+                </div>
+
+                <div class="p-3 bg-charcoal-deep rounded border border-dark-subtle small mb-2">
+                  <div class="d-flex justify-content-between text-muted-ivory mb-1">
+                    <span><i class="bi bi-calendar3 me-1 text-gold"></i> Working Days:</span>
+                    <span class="text-ivory fw-semibold">Sunday – Thursday</span>
+                  </div>
+                  <div class="d-flex justify-content-between text-muted-ivory">
+                    <span><i class="bi bi-clock me-1 text-gold"></i> Chair Hours:</span>
+                    <span class="text-ivory fw-semibold">12:00 PM – 10:00 PM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 pt-0">
+              <a href="booking.html?barber=julian-thorne" class="btn btn-bronze w-100 py-2">
+                <i class="bi bi-calendar-check me-1"></i> Book with Julian
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barber 3: David Sterling -->
+        <div class="col-lg-4 col-md-6 mx-auto">
+          <div class="barber-preview-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="barber-card-img-wrapper position-relative">
+                <img src="assets/images/barber-03.webp" alt="David Sterling - Traditional Shave Craftsman" class="barber-card-img" loading="eager">
+                <div class="barber-card-rating">
+                  <i class="bi bi-star-fill text-gold me-1"></i> 4.99 <small>(488 reviews)</small>
+                </div>
+              </div>
+              <div class="p-4">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <h3 class="font-playfair fs-4 text-ivory mb-0">David Sterling</h3>
+                  <span class="badge bg-espresso-subtle text-bronze border border-bronze-subtle">10+ Years Exp</span>
+                </div>
+                <div class="text-bronze small fw-semibold mb-3">Traditional Shave Craftsman & Stylist</div>
+                
+                <p class="text-muted-ivory small mb-4">
+                  A true traditionalist, David embodies the vintage barbershop heritage. Specializing in hot lather straight-razor treatments and relaxed luxury grooming, he treats every shave as an unhurried, mindful ritual.
+                </p>
+
+                <div class="mb-3">
+                  <span class="small text-bronze fw-semibold d-block mb-2 text-uppercase letter-spacing-1">Core Specialties:</span>
+                  <div class="d-flex flex-wrap gap-1">
+                    <span class="badge bg-espresso text-ivory border border-dark-subtle small">Hot Towel Shaves</span>
+                    <span class="badge bg-espresso text-ivory border border-dark-subtle small">Facial Treatments</span>
+                    <span class="badge bg-espresso text-ivory border border-dark-subtle small">Classic Pompadours</span>
+                    <span class="badge bg-espresso text-ivory border border-dark-subtle small">Scalp Wellness</span>
+                  </div>
+                </div>
+
+                <div class="p-3 bg-charcoal-deep rounded border border-dark-subtle small mb-2">
+                  <div class="d-flex justify-content-between text-muted-ivory mb-1">
+                    <span><i class="bi bi-calendar3 me-1 text-gold"></i> Working Days:</span>
+                    <span class="text-ivory fw-semibold">Sun, Tue – Saturday</span>
+                  </div>
+                  <div class="d-flex justify-content-between text-muted-ivory">
+                    <span><i class="bi bi-clock me-1 text-gold"></i> Chair Hours:</span>
+                    <span class="text-ivory fw-semibold">11:00 AM – 09:00 PM</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 pt-0">
+              <a href="booking.html?barber=david-sterling" class="btn btn-bronze w-100 py-2">
+                <i class="bi bi-calendar-check me-1"></i> Book with David
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Barber Tools & Philosophy Section (Warm Ivory Editorial) -->
+  <section class="section-padding section-ivory">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="section-eyebrow text-gold">Tools of the Trade</span>
+          <h2 class="section-title font-playfair">Precision Engineering Meets Ancient Heritage</h2>
+          <div class="gold-divider"></div>
+          <p class="lead" style="color: #42382f; font-weight: 500;">
+            A craftsman is only as good as the steel in his hand and the discipline of his stroke.
+          </p>
+          <p class="text-muted">
+            Our barbers utilize hand-honed Japanese 440C cobalt steel shears from Osaka, Feather Artist Club straight-edge razors from Seki City, and pure badger-hair lather brushes from Sheffield. Every single tool is ultrasonically sanitized between appointments to ensure surgical purity.
+          </p>
+          <ul class="list-unstyled mt-4">
+            <li class="mb-3 d-flex align-items-center">
+              <i class="bi bi-check-circle-fill text-gold me-3 fs-5"></i>
+              <span class="fw-semibold text-dark">Japanese Hand-Crafted Shears with Convex Bevel Blades</span>
+            </li>
+            <li class="mb-3 d-flex align-items-center">
+              <i class="bi bi-check-circle-fill text-gold me-3 fs-5"></i>
+              <span class="fw-semibold text-dark">Hospital-Grade UV & Autoclave Sterilization</span>
+            </li>
+            <li class="mb-3 d-flex align-items-center">
+              <i class="bi bi-check-circle-fill text-gold me-3 fs-5"></i>
+              <span class="fw-semibold text-dark">Hand-Whipped Organic Lather infused with Sandalwood</span>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <img src="assets/images/about-interior.webp" alt="The Gentlemen Barbering Tools and Lounge" class="img-fluid rounded shadow-lg border border-bronze-subtle w-100">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-5 text-center bg-espresso border-top border-bronze-subtle">
+    <div class="container py-3">
+      <h3 class="font-playfair fs-2 text-ivory mb-2">Can't Decide on a Barber?</h3>
+      <p class="text-muted-ivory mb-4">Choose "Any Available Barber" in our booking flow to match with the earliest available craftsman.</p>
+      <a href="booking.html" class="btn btn-bronze px-5 py-3">
+        Start Appointment Booking <i class="bi bi-arrow-right ms-2"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="gentlemen-footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="brand-logo-link mb-3">
+            <span class="brand-logo-title">THE GENTLEMEN</span>
+            <span class="brand-logo-subtitle">FINE GROOMING STUDIO</span>
+          </div>
+          <p class="small text-muted-ivory mb-4">
+            A bespoke men's barbershop committed to reviving the noble heritage of classic barbering with modern aesthetic precision.
+          </p>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h5 class="font-playfair fs-6 text-ivory mb-3 text-uppercase letter-spacing-1">Navigation</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="footer-nav-link">Home</a></li>
+            <li><a href="services.html" class="footer-nav-link">Services Menu</a></li>
+            <li><a href="barbers.html" class="footer-nav-link">Resident Barbers</a></li>
+            <li><a href="booking.html" class="footer-nav-link">Book Appointment</a></li>
+            <li><a href="my-bookings.html" class="footer-nav-link">My Bookings</a></li>
+            <li><a href="contact.html" class="footer-nav-link">Contact Studio</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-3">
+          <h5 class="font-playfair fs-6 text-ivory mb-3 text-uppercase letter-spacing-1">Studio Address</h5>
+          <p class="small text-muted-ivory mb-2">
+            14 El-Gezira Street, Zamalek<br>Cairo, Egypt
+          </p>
+          <p class="small text-muted-ivory mb-0">
+            Tel: +20 2 2736 8890
+          </p>
+        </div>
+
+        <div class="col-lg-3">
+          <h5 class="font-playfair fs-6 text-ivory mb-3 text-uppercase letter-spacing-1">Demo Notice</h5>
+          <p class="small text-muted-ivory">
+            Demonstration portfolio application. Bookings are saved in your local browser storage.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-5 pt-4 border-top border-dark-subtle d-flex flex-wrap justify-content-between align-items-center small text-muted-ivory">
+        <div>&copy; <span id="current-year">2026</span> THE GENTLEMEN Barbershop. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Modular Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

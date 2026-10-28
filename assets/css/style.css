@@ -1,0 +1,1252 @@
+/**
+ * THE GENTLEMEN — Premium Barbershop & Grooming Studio
+ * Visual Design System & Core Stylesheet
+ */
+
+/* ==========================================================================
+   1. CSS VARIABLES & DESIGN TOKENS
+   ========================================================================== */
+:root {
+  /* Brand Palette */
+  --color-charcoal: #171714;
+  --color-charcoal-deep: #0f0f0d;
+  --color-charcoal-surface: #1e1e1b;
+  --color-espresso: #29231E;
+  --color-espresso-dark: #201a16;
+  --color-espresso-light: #38302a;
+  --color-bronze: #B58A56;
+  --color-bronze-light: #CFA572;
+  --color-bronze-dark: #8C6534;
+  --color-bronze-subtle: rgba(181, 138, 86, 0.22);
+  --color-ivory: #F3EDE3;
+  --color-ivory-light: #FAF7F2;
+  --color-ivory-muted: #A89F93;
+  --color-ivory-dim: #777067;
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Elevations & Borders */
+  --border-hairline: 1px solid rgba(181, 138, 86, 0.18);
+  --border-subtle: 1px solid rgba(243, 237, 227, 0.08);
+  --border-bronze-solid: 1px solid #B58A56;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-luxury: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --shadow-hover: 0 24px 50px rgba(0, 0, 0, 0.65);
+  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   2. GLOBAL RESET & BASE STYLES
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-charcoal);
+  color: var(--color-ivory-muted);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-bronze);
+  color: var(--color-charcoal);
+}
+
+/* Typography Utilities */
+.font-playfair {
+  font-family: var(--font-serif) !important;
+}
+
+.font-manrope {
+  font-family: var(--font-sans) !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-serif);
+  color: var(--color-ivory);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin-bottom: 1.25rem;
+}
+
+a {
+  color: var(--color-bronze);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--color-bronze-light);
+}
+
+.letter-spacing-1 {
+  letter-spacing: 0.1em;
+}
+
+.letter-spacing-2 {
+  letter-spacing: 0.18em;
+}
+
+.letter-spacing-3 {
+  letter-spacing: 0.28em;
+}
+
+/* Colors & Contrast helpers */
+.text-ivory {
+  color: var(--color-ivory) !important;
+}
+
+.text-ivory-light {
+  color: var(--color-ivory-light) !important;
+}
+
+.text-muted-ivory {
+  color: var(--color-ivory-muted) !important;
+}
+
+.text-gold, .text-bronze {
+  color: var(--color-bronze) !important;
+}
+
+.bg-charcoal {
+  background-color: var(--color-charcoal) !important;
+}
+
+.bg-charcoal-deep {
+  background-color: var(--color-charcoal-deep) !important;
+}
+
+.bg-charcoal-surface {
+  background-color: var(--color-charcoal-surface) !important;
+}
+
+.bg-espresso {
+  background-color: var(--color-espresso) !important;
+}
+
+.bg-espresso-dark {
+  background-color: var(--color-espresso-dark) !important;
+}
+
+.border-bronze-subtle {
+  border-color: var(--color-bronze-subtle) !important;
+}
+
+.border-hairline {
+  border: var(--border-hairline) !important;
+}
+
+/* Luxury Warm Ivory Editorial Section Contrast */
+.section-ivory {
+  background-color: var(--color-ivory);
+  color: var(--color-espresso);
+}
+
+.section-ivory h1,
+.section-ivory h2,
+.section-ivory h3,
+.section-ivory h4,
+.section-ivory h5 {
+  color: var(--color-charcoal);
+}
+
+.section-ivory .text-muted-ivory,
+.section-ivory .text-muted {
+  color: #635A50 !important;
+}
+
+.section-ivory .border-dark-subtle {
+  border-color: rgba(41, 35, 30, 0.15) !important;
+}
+
+/* ==========================================================================
+   3. BUTTONS & INTERACTIVE ELEMENTS
+   ========================================================================== */
+.btn {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.85rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-bronze {
+  background-color: var(--color-bronze);
+  color: var(--color-charcoal);
+  border: 1px solid var(--color-bronze);
+}
+
+.btn-bronze:hover, .btn-bronze:focus {
+  background-color: var(--color-bronze-light);
+  border-color: var(--color-bronze-light);
+  color: var(--color-charcoal-deep);
+  box-shadow: 0 8px 22px rgba(181, 138, 86, 0.28);
+}
+
+.btn-outline-bronze {
+  background-color: transparent;
+  color: var(--color-bronze);
+  border: 1px solid var(--color-bronze);
+}
+
+.btn-outline-bronze:hover, .btn-outline-bronze:focus {
+  background-color: var(--color-bronze);
+  color: var(--color-charcoal);
+  border-color: var(--color-bronze);
+  box-shadow: 0 8px 22px rgba(181, 138, 86, 0.2);
+}
+
+.btn-outline-light-custom {
+  background-color: transparent;
+  color: var(--color-ivory);
+  border: 1px solid rgba(243, 237, 227, 0.3);
+}
+
+.btn-outline-light-custom:hover {
+  background-color: rgba(243, 237, 227, 0.1);
+  color: var(--color-ivory-light);
+  border-color: var(--color-ivory);
+}
+
+/* Focus styling for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-bronze);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   4. NAVIGATION BAR & HEADER
+   ========================================================================== */
+.gentlemen-top-bar {
+  background-color: var(--color-charcoal-deep);
+  border-bottom: 1px solid rgba(243, 237, 227, 0.06);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  padding: 0.45rem 0;
+}
+
+.gentlemen-navbar {
+  background-color: rgba(23, 23, 20, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(181, 138, 86, 0.14);
+  padding: 1.1rem 0;
+  transition: var(--transition-smooth);
+  z-index: 1030;
+}
+
+.gentlemen-navbar.navbar-scrolled {
+  padding: 0.65rem 0;
+  background-color: rgba(23, 23, 20, 0.96);
+  border-bottom-color: rgba(181, 138, 86, 0.28);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Typographic Logo */
+.brand-logo-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.brand-logo-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--color-ivory);
+  margin: 0;
+  line-height: 1;
+}
+
+.brand-logo-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  color: var(--color-bronze);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Nav items */
+.navbar-nav .nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ivory-muted);
+  padding: 0.6rem 1rem !important;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: var(--color-ivory);
+}
+
+.navbar-nav .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 1rem;
+  right: 1rem;
+  height: 2px;
+  background-color: var(--color-bronze);
+}
+
+.navbar-toggler {
+  border: 1px solid var(--color-bronze-subtle);
+  padding: 0.4rem 0.65rem;
+  color: var(--color-bronze);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+  outline: 2px solid var(--color-bronze);
+}
+
+/* ==========================================================================
+   5. HERO COMPONENT
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-charcoal-deep);
+  overflow: hidden;
+}
+
+.hero-bg-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.03);
+  filter: brightness(0.65) contrast(1.05);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(23, 23, 20, 0.45) 0%,
+    rgba(23, 23, 20, 0.85) 60%,
+    var(--color-charcoal) 100%
+  );
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  padding: 6rem 0;
+}
+
+.hero-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: rgba(41, 35, 30, 0.65);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-bronze-subtle);
+  border-radius: 50px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--color-bronze);
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--color-ivory-light);
+  margin-top: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-description {
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  color: var(--color-ivory-muted);
+  max-width: 620px;
+  line-height: 1.7;
+}
+
+.hero-feature-stat {
+  border-left: 2px solid var(--color-bronze);
+  padding-left: 1.25rem;
+}
+
+/* ==========================================================================
+   6. SECTION HEADINGS & ACCENTS
+   ========================================================================== */
+.section-padding {
+  padding: 6.5rem 0;
+}
+
+.section-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: clamp(1.9rem, 3.2vw, 3rem);
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-ivory-muted);
+  max-width: 640px;
+  line-height: 1.7;
+}
+
+.gold-divider {
+  width: 50px;
+  height: 2px;
+  background-color: var(--color-bronze);
+  margin: 1.25rem 0;
+}
+
+.gold-divider.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   7. SERVICE CARDS & PREVIEWS
+   ========================================================================== */
+.service-preview-card,
+.service-selection-card {
+  background-color: var(--color-espresso);
+  border: 1px solid var(--color-bronze-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  position: relative;
+}
+
+.service-preview-card:hover,
+.service-selection-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-bronze);
+  box-shadow: var(--shadow-luxury);
+}
+
+.service-selection-card.selected {
+  border: 2px solid var(--color-bronze);
+  background-color: #2e2620;
+  box-shadow: 0 8px 24px rgba(181, 138, 86, 0.22);
+}
+
+.service-card-img-wrapper {
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+  background-color: var(--color-charcoal-deep);
+}
+
+.service-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-preview-card:hover .service-card-img,
+.service-selection-card:hover .service-card-img {
+  transform: scale(1.05);
+}
+
+.service-card-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: rgba(23, 23, 20, 0.85);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--color-bronze-subtle);
+  color: var(--color-ivory);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.service-popular-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: var(--color-bronze);
+  color: var(--color-charcoal);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.service-card-price {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--color-bronze);
+  font-weight: 600;
+}
+
+.service-card-price .currency {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--color-ivory-muted);
+  font-weight: 500;
+}
+
+/* Service Menu Tabs on services.html */
+.service-filter-btn {
+  background-color: transparent;
+  color: var(--color-ivory-muted);
+  border: 1px solid rgba(243, 237, 227, 0.15);
+  padding: 0.55rem 1.25rem;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: var(--transition-smooth);
+}
+
+.service-filter-btn:hover,
+.service-filter-btn.active {
+  background-color: var(--color-bronze);
+  color: var(--color-charcoal);
+  border-color: var(--color-bronze);
+}
+
+/* ==========================================================================
+   8. BARBER PROFILES & CARDS
+   ========================================================================== */
+.barber-preview-card,
+.barber-selection-card {
+  background-color: var(--color-espresso);
+  border: 1px solid var(--color-bronze-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.barber-preview-card:hover,
+.barber-selection-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-bronze);
+  box-shadow: var(--shadow-luxury);
+}
+
+.barber-selection-card.selected {
+  border: 2px solid var(--color-bronze);
+  background-color: #2e2620;
+  box-shadow: 0 8px 24px rgba(181, 138, 86, 0.22);
+}
+
+.barber-card-img-wrapper {
+  position: relative;
+  height: 290px;
+  overflow: hidden;
+  background-color: var(--color-charcoal-deep);
+}
+
+.barber-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.barber-preview-card:hover .barber-card-img,
+.barber-selection-card:hover .barber-card-img {
+  transform: scale(1.04);
+}
+
+.barber-card-rating {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background-color: rgba(23, 23, 20, 0.9);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--color-bronze-subtle);
+  color: var(--color-ivory);
+  font-size: 0.75rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.barber-selection-card.any-barber-card {
+  background-color: var(--color-charcoal-surface);
+  border: 1px dashed var(--color-bronze);
+}
+
+.barber-selection-card.any-barber-card.selected {
+  border: 2px solid var(--color-bronze);
+  background-color: var(--color-espresso);
+}
+
+.barber-avatar-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: var(--color-espresso);
+  border: 1px solid var(--color-bronze);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   9. INTERACTIVE BOOKING WIZARD & STEPPER
+   ========================================================================== */
+.booking-stepper-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.booking-stepper-container::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background-color: rgba(181, 138, 86, 0.2);
+  z-index: 1;
+}
+
+.step-progress-item {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--transition-smooth);
+}
+
+.step-indicator-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--color-charcoal-deep);
+  border: 2px solid rgba(181, 138, 86, 0.35);
+  color: var(--color-ivory-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  transition: var(--transition-smooth);
+}
+
+.step-progress-item.active .step-indicator-circle {
+  background-color: var(--color-bronze);
+  border-color: var(--color-bronze);
+  color: var(--color-charcoal);
+  box-shadow: 0 0 16px rgba(181, 138, 86, 0.4);
+}
+
+.step-progress-item.completed .step-indicator-circle {
+  background-color: var(--color-espresso);
+  border-color: var(--color-bronze);
+  color: var(--color-bronze);
+}
+
+.step-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ivory-dim);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.step-progress-item.active .step-label {
+  color: var(--color-ivory);
+}
+
+.step-progress-item.completed .step-label {
+  color: var(--color-bronze);
+}
+
+/* Wizard Step Panes */
+.booking-step-pane {
+  display: none;
+}
+
+.booking-step-pane.active {
+  display: block;
+  animation: fadeInStep 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInStep {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.booking-wizard-box {
+  background-color: var(--color-charcoal-surface);
+  border: 1px solid var(--color-bronze-subtle);
+  border-radius: var(--radius-md);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-luxury);
+}
+
+.booking-summary-box {
+  background-color: var(--color-espresso);
+  border: 1px solid var(--color-bronze-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.85rem;
+  position: sticky;
+  top: 100px;
+}
+
+/* ==========================================================================
+   10. INTERACTIVE CALENDAR COMPONENT
+   ========================================================================== */
+.calendar-widget {
+  background-color: var(--color-espresso);
+  border: 1px solid var(--color-bronze-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(181, 138, 86, 0.15);
+}
+
+.calendar-nav-btn {
+  background: transparent;
+  border: 1px solid var(--color-bronze-subtle);
+  color: var(--color-bronze);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.calendar-nav-btn:hover:not(:disabled) {
+  background-color: var(--color-bronze);
+  color: var(--color-charcoal);
+}
+
+.calendar-weekdays-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.calendar-weekday {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-bronze);
+  padding: 0.4rem 0;
+  text-transform: uppercase;
+}
+
+.calendar-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-day {
+  background: transparent;
+  border: 1px solid rgba(243, 237, 227, 0.08);
+  border-radius: var(--radius-sm);
+  color: var(--color-ivory);
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition-smooth);
+  font-size: 0.95rem;
+}
+
+.calendar-day:hover:not(:disabled):not(.empty) {
+  border-color: var(--color-bronze);
+  background-color: rgba(181, 138, 86, 0.15);
+}
+
+.calendar-day.is-today {
+  border-color: var(--color-bronze);
+}
+
+.calendar-day.is-today .today-dot {
+  position: absolute;
+  bottom: 4px;
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-bronze);
+  border-radius: 50%;
+}
+
+.calendar-day.is-selected {
+  background-color: var(--color-bronze) !important;
+  border-color: var(--color-bronze) !important;
+  color: var(--color-charcoal) !important;
+  font-weight: 700;
+}
+
+.calendar-day.is-selected .today-dot {
+  background-color: var(--color-charcoal);
+}
+
+.calendar-day.disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.calendar-day.off-duty {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: rgba(255, 75, 75, 0.2);
+  background-color: rgba(255, 75, 75, 0.04);
+}
+
+.calendar-day .off-badge {
+  font-size: 0.58rem;
+  color: #ff8e8e;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+.calendar-day.empty {
+  border: none;
+  cursor: default;
+}
+
+/* ==========================================================================
+   11. TIME SLOT CHIPS
+   ========================================================================== */
+.time-slot-btn {
+  background-color: var(--color-charcoal-surface);
+  border: 1px solid var(--color-bronze-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--color-ivory);
+  padding: 0.65rem 0.4rem;
+  text-align: center;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.time-slot-btn .time-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.time-slot-btn .slot-subtext {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--color-bronze);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.time-slot-btn:hover:not(:disabled) {
+  border-color: var(--color-bronze);
+  background-color: rgba(181, 138, 86, 0.15);
+  transform: translateY(-2px);
+}
+
+.time-slot-btn.selected {
+  background-color: var(--color-bronze);
+  border-color: var(--color-bronze);
+  color: var(--color-charcoal);
+  box-shadow: 0 4px 14px rgba(181, 138, 86, 0.35);
+}
+
+.time-slot-btn.selected .slot-subtext {
+  color: var(--color-charcoal-deep);
+  font-weight: 700;
+}
+
+.time-slot-btn.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.time-slot-btn.disabled .slot-subtext {
+  color: #888;
+}
+
+/* ==========================================================================
+   12. FORM INPUTS & VALIDATION FEEDBACK
+   ========================================================================== */
+.gentlemen-form-group {
+  margin-bottom: 1.4rem;
+}
+
+.gentlemen-form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ivory);
+  margin-bottom: 0.45rem;
+}
+
+.form-control, .form-select {
+  background-color: var(--color-charcoal-deep);
+  border: 1px solid rgba(181, 138, 86, 0.25);
+  color: var(--color-ivory);
+  border-radius: var(--radius-sm);
+  padding: 0.78rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: #121210;
+  border-color: var(--color-bronze);
+  color: var(--color-ivory-light);
+  box-shadow: 0 0 0 3px rgba(181, 138, 86, 0.2);
+}
+
+.form-control.is-valid {
+  border-color: #4BB543;
+  background-image: none;
+}
+
+.form-control.is-invalid {
+  border-color: #FF5252;
+  background-image: none;
+}
+
+.invalid-feedback {
+  color: #FF6E6E;
+  font-size: 0.78rem;
+  margin-top: 0.35rem;
+}
+
+/* ==========================================================================
+   13. CONFIRMATION RECEIPT & MY BOOKINGS CARDS
+   ========================================================================== */
+.confirmation-receipt-card {
+  background-color: var(--color-espresso);
+  border: 1px solid var(--color-bronze);
+  border-radius: var(--radius-md);
+  padding: 2.75rem 2.25rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-luxury);
+}
+
+.confirmation-receipt-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-bronze-dark), var(--color-bronze), var(--color-bronze-light));
+}
+
+.booking-ref-badge {
+  display: inline-block;
+  background-color: rgba(181, 138, 86, 0.15);
+  border: 1px solid var(--color-bronze);
+  color: var(--color-bronze);
+  font-family: monospace;
+  font-size: 1.15rem;
+  letter-spacing: 0.15em;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+}
+
+/* My Bookings item cards */
+.my-booking-card {
+  background-color: var(--color-espresso);
+  border: 1px solid var(--color-bronze-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.65rem;
+  transition: var(--transition-smooth);
+}
+
+.my-booking-card:hover {
+  border-color: var(--color-bronze);
+  box-shadow: var(--shadow-luxury);
+}
+
+.booking-status-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border-radius: 50px;
+}
+
+.booking-status-badge.confirmed {
+  background-color: rgba(181, 138, 86, 0.15);
+  border: 1px solid var(--color-bronze);
+  color: var(--color-bronze);
+}
+
+.booking-status-badge.completed {
+  background-color: rgba(75, 181, 67, 0.15);
+  border: 1px solid #4BB543;
+  color: #4BB543;
+}
+
+.booking-status-badge.cancelled {
+  background-color: rgba(255, 82, 82, 0.15);
+  border: 1px solid #FF5252;
+  color: #FF6E6E;
+}
+
+/* ==========================================================================
+   14. GALLERY & TESTIMONIALS
+   ========================================================================== */
+.gallery-grid-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  height: 310px;
+  background-color: var(--color-charcoal-deep);
+}
+
+.gallery-grid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-grid-item:hover .gallery-grid-img {
+  transform: scale(1.06);
+}
+
+.gallery-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(23, 23, 20, 0.9) 0%, rgba(23, 23, 20, 0.2) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.5rem;
+  opacity: 0.9;
+  transition: var(--transition-smooth);
+}
+
+.testimonial-card {
+  background-color: var(--color-espresso);
+  border: 1px solid var(--color-bronze-subtle);
+  border-radius: var(--radius-sm);
+  padding: 2.25rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   15. TOAST NOTIFICATIONS & MODAL
+   ========================================================================== */
+.gentlemen-toast {
+  background-color: var(--color-espresso-dark);
+  border: 1px solid var(--color-bronze);
+  border-radius: var(--radius-sm);
+  min-width: 330px;
+  max-width: 420px;
+  overflow: hidden;
+  animation: slideInToast 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInToast {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.gentlemen-toast.hide {
+  animation: slideOutToast 0.3s ease forwards;
+}
+
+@keyframes slideOutToast {
+  to {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
+.toast-progress-bar {
+  height: 3px;
+  background: var(--color-bronze);
+  animation: toastProgress 4s linear forwards;
+}
+
+@keyframes toastProgress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+.gentlemen-modal-content {
+  background-color: var(--color-espresso);
+  border: 1px solid var(--color-bronze);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-luxury);
+}
+
+/* ==========================================================================
+   16. FOOTER
+   ========================================================================== */
+.gentlemen-footer {
+  background-color: var(--color-charcoal-deep);
+  border-top: 1px solid rgba(181, 138, 86, 0.2);
+  padding: 5.5rem 0 2.5rem;
+}
+
+.footer-brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  letter-spacing: 0.16em;
+  color: var(--color-ivory);
+  margin-bottom: 0.35rem;
+}
+
+.footer-nav-link {
+  color: var(--color-ivory-muted);
+  display: inline-block;
+  margin-bottom: 0.65rem;
+  font-size: 0.88rem;
+  transition: var(--transition-smooth);
+}
+
+.footer-nav-link:hover {
+  color: var(--color-bronze);
+  transform: translateX(3px);
+}
+
+.social-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--color-bronze-subtle);
+  color: var(--color-bronze);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+  transition: var(--transition-smooth);
+}
+
+.social-icon-btn:hover {
+  background-color: var(--color-bronze);
+  color: var(--color-charcoal);
+  border-color: var(--color-bronze);
+}
+
+/* Demo Notice Banner */
+.demo-disclaimer-strip {
+  background-color: rgba(181, 138, 86, 0.08);
+  border-top: 1px solid var(--color-bronze-subtle);
+  border-bottom: 1px solid var(--color-bronze-subtle);
+  padding: 0.65rem 0;
+  font-size: 0.78rem;
+  color: var(--color-ivory-muted);
+}
